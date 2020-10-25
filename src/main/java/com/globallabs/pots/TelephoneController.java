@@ -2,9 +2,11 @@ package com.globallabs.pots;
 
 import java.util.List;
 
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,5 +62,15 @@ class TelephoneController {
         return ResponseEntity
                 .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
                 .body(entityModel);
+    }
+
+    /**
+     * Delete an existing phone from the network
+     * @param id the identifier of the phone
+     * @return a responseentity
+     */
+    @DeleteMapping("/telephones/{id}")
+    ResponseEntity<?> delete(@PathVariable Long id) {
+        throw new NotYetImplementedException();
     }
 }
