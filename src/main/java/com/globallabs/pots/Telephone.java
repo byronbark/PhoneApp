@@ -12,6 +12,10 @@ class Telephone {
     private @Id @GeneratedValue Long id;
     private String username;
 
+    public Telephone() {
+
+    }
+
     /**
      * Contructor of the telephone entity
      * @param username the username attached to the telephone
