@@ -25,4 +25,17 @@ class TelephoneController {
     List<Telephone> all() {
         return repository.findAll();
     }
+    /**
+     * API to get one telephone in the database
+     * @param id the id of the phone
+     * @return the response
+     * 
+     * @apiNote it is not implemented yet
+     */
+    @GetMapping("/telephones/{id}")
+    ResponseEntity<?> one(@PathVariable Long id) {
+        return ResponseEntity
+                .ok()
+                .body("ok");
+    }
 }
