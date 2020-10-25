@@ -10,8 +10,14 @@ import javax.persistence.Id;
 class Telephone {
     
     private @Id @GeneratedValue Long id;
+    private String username;
 
-    Telephone(){
+    /**
+     * Contructor of the telephone entity
+     * @param username the username attached to the telephone
+     */
+    public Telephone(String username){
+        this.username = username;
     }
 
     /**
@@ -20,6 +26,22 @@ class Telephone {
      */
     public Long getId() {
         return id;
+    }
+
+    /**
+     * Getter for the Username field
+     * @return the username attached to the phone
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Setter for the Username field
+     * @param username the username attached to the telephone
+     */
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
@@ -45,6 +67,6 @@ class Telephone {
      */
     @Override
     public String toString() {
-        return "Telephone{" + "id=" + this.id + "}";
+        return "Telephone{" + "id=" + this.id + ", username=" + this.username + "}";
     }
 }
