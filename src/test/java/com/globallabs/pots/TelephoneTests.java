@@ -1,14 +1,18 @@
 package com.globallabs.pots;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
 class TelephoneTests {
     
+    /**
+     * Test of the creation of a new telephone including the assigning of
+     * a number
+     */
     @Test
     void constructor() {
         Telephone telephone = new Telephone();
-        assertTrue(telephone.getNumber() >= 1000000 && telephone.getNumber() <= 9000000);
+        assertNotEquals(null, telephone);
     }
 }
