@@ -12,7 +12,7 @@ class Telephone {
     private @Id @GeneratedValue Long id;
     private String username;
 
-    public Telephone() {
+    Telephone() {
 
     }
 
@@ -20,7 +20,7 @@ class Telephone {
      * Contructor of the telephone entity
      * @param username the username attached to the telephone
      */
-    public Telephone(String username){
+    Telephone(String username){
         this.username = username;
     }
 
