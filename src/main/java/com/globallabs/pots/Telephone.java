@@ -9,16 +9,17 @@ import javax.persistence.Id;
 @Entity
 class Telephone {
     
-    private @Id @GeneratedValue Long id;
+    private @Id int id;
 
-    Telephone(){
+    Telephone(final int id){
+    	this.id = id;
     }
 
     /**
      * Getter for the Id field
      * @return the identifier of the phone
      */
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

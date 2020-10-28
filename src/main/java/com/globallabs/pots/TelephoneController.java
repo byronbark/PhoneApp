@@ -45,7 +45,7 @@ class TelephoneController {
      * @apiNote it is not implemented yet
      */
     @GetMapping("/telephones/{id}")
-    ResponseEntity<?> one(@PathVariable Long id) {
+    ResponseEntity<?> one(@PathVariable int id) {
         return ResponseEntity
                 .ok()
                 .body("ok");
@@ -70,7 +70,7 @@ class TelephoneController {
      * @return a responseentity
      */
     @DeleteMapping("/telephones/{id}")
-    ResponseEntity<?> delete(@PathVariable Long id) {
+    ResponseEntity<?> delete(@PathVariable int id) {
         throw new NotYetImplementedException();
     }
 }

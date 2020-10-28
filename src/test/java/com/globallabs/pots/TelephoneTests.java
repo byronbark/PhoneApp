@@ -12,7 +12,7 @@ class TelephoneTests {
      */
     @Test
     void constructor() {
-        Telephone telephone = new Telephone();
+        Telephone telephone = new Telephone(1);
         assertNotEquals(null, telephone);
     }
 }

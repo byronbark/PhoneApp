@@ -20,8 +20,8 @@ class TelephoneControllerTests {
 
     @Test
     public void testDeletingExistingTelephone() {
-        Long id = (long) 1;
-        controller.newTelephone(new Telephone()); // Telephone with ID one
+        int id = 1;
+        controller.newTelephone(new Telephone(id)); // Telephone with ID one
         ResponseEntity<?> response = controller.delete(id);
         assertEquals(204, response.getStatusCodeValue());
     }
