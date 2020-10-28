@@ -1,16 +1,18 @@
 package com.globallabs.abstractions;
 
+import com.globallabs.pots.Telephone;
+
 public interface TelephoneFunctions {
+	
 	/**
-	 * 
-	 * @param phoneNumber
-	 * @return
+	 * Dial a phone from the current device
+	 * @param phoneToCall
 	 */
-	public boolean dial(final int phoneNumber);
+	public void dial(final int number);
 	
-	public void ring(final int phoneNumber);
-	
-	public void answer();
-	
-	public void hangUp();
+//	public void ring(final int phoneNumber);
+//	
+//	public void answer();
+//	
+//	public void hangUp();
 }

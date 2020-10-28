@@ -11,7 +11,7 @@ class TelephoneTests {
      * a number
      */
     @Test
-    void constructor() {
+    void test_constructor() {
         Telephone telephone = new Telephone(1);
         assertNotEquals(null, telephone);
     }

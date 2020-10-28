@@ -9,13 +9,13 @@ import javax.persistence.Id;
 import com.globallabs.abstractions.TelephoneFunctions;
 
 @Entity
-public class Telephone implements TelephoneFunctions {
+public class Telephone {
     
     private @Id int id;
     
     private Status status;
-
-    Telephone(final int id){
+    
+    public Telephone(final int id){
     	this.id = id;
     	this.status = Status.OFF_CALL;
     }
@@ -26,10 +26,6 @@ public class Telephone implements TelephoneFunctions {
      */
     public int getId() {
         return id;
-    }
-    
-    public void dial(final Telephone phoneToCall) {
-    	
     }
     
     /**
