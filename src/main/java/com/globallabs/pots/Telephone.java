@@ -3,10 +3,7 @@ package com.globallabs.pots;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import com.globallabs.abstractions.TelephoneFunctions;
 
 @Entity
 public class Telephone {
@@ -26,6 +23,22 @@ public class Telephone {
      */
     public int getId() {
         return id;
+    }
+    
+    /**
+     * Getter for the status
+     * @return the status of the phone
+     */
+    public Status getStatus() {
+    	return status;
+    }
+    
+    /**
+     * Set a new status to the phone
+     * @param newStatus
+     */
+    public void setStatus(final Status newStatus) {
+    	this.status = newStatus;
     }
     
     /**
