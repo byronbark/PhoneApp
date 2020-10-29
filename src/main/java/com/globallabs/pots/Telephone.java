@@ -6,13 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.globallabs.abstractions.TelephoneFunctions;
+
 @Entity
-class Telephone {
+public class Telephone {
     
     private @Id int id;
-
-    Telephone(final int id){
+    
+    private Status status;
+    
+    public Telephone(final int id){
     	this.id = id;
+    	this.status = Status.OFF_CALL;
     }
 
     /**
@@ -22,7 +27,7 @@ class Telephone {
     public int getId() {
         return id;
     }
-
+    
     /**
      * Compare to telephone to see if they are the same
      * 
