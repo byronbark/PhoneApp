@@ -14,6 +14,9 @@ class TelephoneControllerTests {
     @Autowired
     private TelephoneController controller;
 
+    @Autowired
+    private TelephoneRepository repository;
+
     @Test
     public void contextLoads(){
         assertThat(controller).isNotNull();
@@ -22,15 +25,14 @@ class TelephoneControllerTests {
     @Test
     public void testDeletingExistingTelephone() {
         controller.newTelephone(new Telephone(1)); // Telephone with ID one
-        ResponseEntity<?> response = controller.delete(id);
+        ResponseEntity<?> response = controller.delete(1);
         assertEquals(204, response.getStatusCodeValue());
     }
 
     @Test
     public void testUpdateExistingTelephone() {
-        TelephoneRepository tr = new TelephoneRepository();
         Telephone telephone = new Telephone(1);
-        tr.save(telephone);
+        repository.save(telephone);
         telephone.setStatus(Status.BUSY);
         controller.updateTelephone(telephone);
 

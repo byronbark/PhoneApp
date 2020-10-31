@@ -50,16 +50,6 @@ class TelephoneController {
         //.orElseThrow(() -> new TelephoneNotFoundException(id));
     }
 
-    /**
-     * API to get multiple telephones in the database
-     * @param id the id of the phones
-     * @return the response
-     */
-    @GetMapping("/telephone/{id}")
-    List<Telephone> findAllById(Iterable<int> ids) {
-        return repository.findAllById(ids);
-    }
-  
     @GetMapping("/telephones/{id}")
     ResponseEntity<?> one(@PathVariable int id) {
         return ResponseEntity
