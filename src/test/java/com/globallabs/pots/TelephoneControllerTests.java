@@ -20,7 +20,7 @@ class TelephoneControllerTests {
     private TelephoneRepository repository;
 
     @Test
-    public void contextLoads(){
+    public void contextLoads() {
         assertThat(controller).isNotNull();
     }
 
@@ -40,6 +40,6 @@ class TelephoneControllerTests {
         controller.updateTelephone(telephone, telephone.getId());
         Optional<Telephone> retrievedPhone = repository.findById(telephone.getId());
         assertTrue(retrievedPhone.isPresent());
-        retrievedPhone.ifPresent(phone -> assertEquals(phone.getStatus(), Status.BUSY));
+        retrievedPhone.ifPresent(phone -> assertEquals(Status.BUSY, phone.getStatus()));
     }
 }

@@ -21,6 +21,10 @@ public class Telephone {
         this.username = username;
     }
 
+    public Telephone() {
+    
+    }
+
     /**
      * Getter for the Id field
      * @return the identifier of the phone

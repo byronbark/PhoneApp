@@ -3,7 +3,6 @@ package com.globallabs.pots;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 class TelephoneController {
 
@@ -23,6 +21,7 @@ class TelephoneController {
 
 	/**
 	 * Constructor of the class
+	 * 
 	 * @param repository the interface to connect to the database
 	 */
 	TelephoneController(TelephoneRepository repository, TelephoneModelAssembler assembler) {
@@ -32,6 +31,7 @@ class TelephoneController {
 
 	/**
 	 * API to get all the telephones in the database
+	 * 
 	 * @return a list with the telephones
 	 */
 	@GetMapping("/telephones")
@@ -39,68 +39,62 @@ class TelephoneController {
 		return repository.findAll();
 	}
 
-    /**
-     * API to get one telephone in the database
-     * @param id the id of the phone
-     * @return the response
-     */
-    @GetMapping("/telephone/{id}")
-    Optional<Telephone> findOneById(@PathVariable int id) {
-        return repository.findById(id);
-        //.orElseThrow(() -> new TelephoneNotFoundException(id));
-    }
-
-    @GetMapping("/telephones/{id}")
-    ResponseEntity<?> one(@PathVariable int id) {
-        return ResponseEntity
-                .ok()
-                .body("ok");
-    }
+	/**
+	 * API to get one telephone in the database
+	 * 
+	 * @param id the id of the phone
+	 * @return the response
+	 */
+	@GetMapping("/telephone/{id}")
+	public Optional<Telephone> findOneById(@PathVariable int id) {
+		return repository.findById(id);
+		// .orElseThrow(() -> new TelephoneNotFoundException(id));
+	}
 
 	/**
 	 * Add a new telephone to the network
+	 * 
 	 * @param newTelephone the new telephone information
 	 * @return the information of the new telephone in the network
 	 */
 	@PostMapping("/telephones")
-	ResponseEntity<?> newTelephone(@RequestBody Telephone newTelephone) {
-		EntityModel<Telephone> entityModel = assembler.toModel(repository.save(newTelephone)); 
-		return ResponseEntity
-				.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
-				.body(entityModel);
+	public ResponseEntity<EntityModel<Telephone>> newTelephone(@RequestBody Telephone newTelephone) {
+		EntityModel<Telephone> entityModel = assembler.toModel(repository.save(newTelephone));
+		return ResponseEntity.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(entityModel);
 	}
 
 	/**
 	 * Update an existing telephone
+	 * 
 	 * @param newTelephone the new telephone information
-	 * @param username the new username for the telephone
+	 * @param username     the new username for the telephone
 	 * @return the information of the new telephone in the network
 	 */
 	@PostMapping("/telephones/{id}")
-	ResponseEntity<?> updateTelephone(@RequestBody Telephone newTelephone, @PathVariable int id) {
+	public ResponseEntity<EntityModel<Telephone>> updateTelephone(@RequestBody Telephone newTelephone,
+			@PathVariable int id) {
 		Telephone updatedTelephone = repository.findById(id).map(telephone -> {
 			telephone.setUsername(newTelephone.getUsername());
 			return repository.save(telephone);
 		}).orElseGet(() -> {
 			return repository.save(newTelephone);
 		});
-  
+
 		EntityModel<Telephone> entityModel = assembler.toModel(updatedTelephone);
-  
-		return ResponseEntity
-			.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
-			.body(entityModel);
+
+		return ResponseEntity.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(entityModel);
 	}
 
 	/**
 	 * Delete an existing phone from the network
+	 * 
 	 * @param id the identifier of the phone
 	 * @return a responseentity
 	 */
 	@DeleteMapping("/telephones/{id}")
-	ResponseEntity<?> delete(@PathVariable int id) {
-        repository.findById(id).ifPresent(phone -> repository.delete(phone));
+	public ResponseEntity<Integer> delete(@PathVariable int id) {
+		repository.findById(id).ifPresent(phone -> repository.delete(phone));
 
-        return ResponseEntity.ok().body("ok");
+		return ResponseEntity.ok(204);
 	}
 }
