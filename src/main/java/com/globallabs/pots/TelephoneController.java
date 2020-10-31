@@ -35,7 +35,7 @@ class TelephoneController {
 	 * @return a list with the telephones
 	 */
 	@GetMapping("/telephones")
-	List<Telephone> all() {
+	public List<Telephone> all() {
 		return repository.findAll();
 	}
 
@@ -47,6 +47,11 @@ class TelephoneController {
 	 */
 	@GetMapping("/telephone/{id}")
 	public Optional<Telephone> findOneById(@PathVariable int id) {
+		return repository.findById(id);
+		// .orElseThrow(() -> new TelephoneNotFoundException(id));
+	}
+
+	public Optional<Telephone> one(@PathVariable int id) {
 		return repository.findById(id);
 		// .orElseThrow(() -> new TelephoneNotFoundException(id));
 	}
@@ -93,8 +98,8 @@ class TelephoneController {
 	 */
 	@DeleteMapping("/telephones/{id}")
 	public ResponseEntity<Integer> delete(@PathVariable int id) {
-		repository.findById(id).ifPresent(phone -> repository.delete(phone));
+		repository.findById(id).ifPresent(repository::delete);
 
-		return ResponseEntity.ok(204);
+		return ResponseEntity.noContent().build();
 	}
 }
