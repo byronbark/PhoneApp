@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
-import jdk.nashorn.internal.AssertsEnabled;
 
 @SpringBootTest
 class TelephoneControllerTests {
@@ -22,8 +21,7 @@ class TelephoneControllerTests {
 
     @Test
     public void testDeletingExistingTelephone() {
-        Long id = (long) 1;
-        controller.newTelephone(new Telephone()); // Telephone with ID one
+        controller.newTelephone(new Telephone(1)); // Telephone with ID one
         ResponseEntity<?> response = controller.delete(id);
         assertEquals(204, response.getStatusCodeValue());
     }

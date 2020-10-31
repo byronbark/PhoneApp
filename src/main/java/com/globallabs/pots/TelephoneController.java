@@ -45,7 +45,7 @@ class TelephoneController {
      * @return the response
      */
     @GetMapping("/telephone/{id}")
-    Optional<Telephone> findOneById(@PathVariable Long id) {
+    Optional<Telephone> findOneById(@PathVariable int id) {
         return repository.findById(id);
         //.orElseThrow(() -> new TelephoneNotFoundException(id));
     }
@@ -56,12 +56,12 @@ class TelephoneController {
      * @return the response
      */
     @GetMapping("/telephone/{id}")
-    List<Telephone> findAllById(Iterable<Telephone> ids) {
+    List<Telephone> findAllById(Iterable<int> ids) {
         return repository.findAllById(ids);
     }
   
     @GetMapping("/telephones/{id}")
-    ResponseEntity<?> one(@PathVariable long id) {
+    ResponseEntity<?> one(@PathVariable int id) {
         return ResponseEntity
                 .ok()
                 .body("ok");
@@ -86,7 +86,7 @@ class TelephoneController {
      * @return a responseentity
      */
     @DeleteMapping("/telephones/{id}")
-    ResponseEntity<?> delete(@PathVariable Long id) {
+    ResponseEntity<?> delete(@PathVariable int id) {
         throw new NotYetImplementedException();
     }
 }
