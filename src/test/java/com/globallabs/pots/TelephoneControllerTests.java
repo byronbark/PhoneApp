@@ -27,8 +27,8 @@ class TelephoneControllerTests {
     @Test
     public void testDeletingExistingTelephone() {
         Telephone telephone = new Telephone("fake user");
-        controller.newTelephone(telephone);
-        ResponseEntity<?> response = controller.delete(1);
+        repository.save(telephone);
+        ResponseEntity<?> response = controller.delete(telephone.getId());
         assertEquals(204, response.getStatusCodeValue());
     }
 

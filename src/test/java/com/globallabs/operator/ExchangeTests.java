@@ -51,7 +51,7 @@ public class ExchangeTests {
 		Exchange exchange = new Exchange();
 		Telephone telephone = new Telephone("fake user");
 		exchange.addPhoneToExchange(telephone);
-		exchange.enrouteCall(1);
+		exchange.enrouteCall(telephone.getId());
 		assertEquals(Status.RINGING, telephone.getStatus());
 	}
 	
@@ -66,7 +66,7 @@ public class ExchangeTests {
 		exchange.addPhoneToExchange(telephone);
 		telephone.setStatus(Status.BUSY);
 
-		assertThrows(BusyPhoneException.class, () -> {exchange.enrouteCall(1);});
+		assertThrows(BusyPhoneException.class, () -> {exchange.enrouteCall(telephone.getId());});
 	}
 	
 	/**

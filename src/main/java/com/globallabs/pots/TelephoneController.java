@@ -99,6 +99,8 @@ class TelephoneController {
 	 */
 	@DeleteMapping("/telephones/{id}")
 	ResponseEntity<?> delete(@PathVariable int id) {
-		throw new NotYetImplementedException();
+        repository.findById(id).ifPresent(phone -> repository.delete(phone));
+
+        return ResponseEntity.ok().body("ok");
 	}
 }
