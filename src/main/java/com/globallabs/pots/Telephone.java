@@ -4,17 +4,25 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
 
 @Entity
 public class Telephone {
     
-    private @Id int id;
-    
+    private @Id @GeneratedValue int id;
+    private String username;
     private Status status;
+
+    /**
+     * Contructor of the telephone entity
+     * @param username the username attached to the telephone
+     */
+    public Telephone(String username){
+        this.username = username;
+    }
+
+    public Telephone() {
     
-    public Telephone(final int id){
-    	this.id = id;
-    	this.status = Status.OFF_CALL;
     }
 
     /**
@@ -42,6 +50,22 @@ public class Telephone {
     }
     
     /**
+     * Getter for the Username field
+     * @return the username attached to the phone
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Setter for the Username field
+     * @param username the username attached to the telephone
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
      * Compare to telephone to see if they are the same
      * 
      * @param o The object to compare
@@ -64,6 +88,6 @@ public class Telephone {
      */
     @Override
     public String toString() {
-        return "Telephone{" + "id=" + this.id + "}";
+        return "Telephone{" + "id=" + this.id + ", username=" + this.username + "}";
     }
 }
