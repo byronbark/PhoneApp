@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jdk.internal.net.http.common.Log;
+import sun.security.provider.certpath.ResponderId;
+
 @RestController
 class TelephoneController {
-
+    
     private final TelephoneRepository repository;
     private final TelephoneModelAssembler assembler;
 
@@ -41,11 +44,25 @@ class TelephoneController {
      * API to get one telephone in the database
      * @param id the id of the phone
      * @return the response
-     * 
-     * @apiNote it is not implemented yet
      */
+    @GetMapping("/telephone/{id}")
+    Optional<Telephone> findOneById(@PathVariable Long id) {
+        return repository.findById(id);
+        //.orElseThrow(() -> new TelephoneNotFoundException(id));
+    }
+
+    /**
+     * API to get multiple telephones in the database
+     * @param id the id of the phones
+     * @return the response
+     */
+    @GetMapping("/telephone/{id}")
+    List<Telephone> findAllById(Iterable<Telephone> ids) {
+        return repository.findAllById(ids);
+    }
+  
     @GetMapping("/telephones/{id}")
-    ResponseEntity<?> one(@PathVariable int id) {
+    ResponseEntity<?> one(@PathVariable long id) {
         return ResponseEntity
                 .ok()
                 .body("ok");
@@ -70,7 +87,7 @@ class TelephoneController {
      * @return a responseentity
      */
     @DeleteMapping("/telephones/{id}")
-    ResponseEntity<?> delete(@PathVariable int id) {
+    ResponseEntity<?> delete(@PathVariable Long id) {
         throw new NotYetImplementedException();
     }
 }

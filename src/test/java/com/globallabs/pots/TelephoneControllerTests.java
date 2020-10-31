@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
+import jdk.nashorn.internal.AssertsEnabled;
+
 @SpringBootTest
 class TelephoneControllerTests {
     @Autowired
@@ -20,9 +22,20 @@ class TelephoneControllerTests {
 
     @Test
     public void testDeletingExistingTelephone() {
-        int id = 1;
-        controller.newTelephone(new Telephone(id)); // Telephone with ID one
+        Long id = (long) 1;
+        controller.newTelephone(new Telephone()); // Telephone with ID one
         ResponseEntity<?> response = controller.delete(id);
         assertEquals(204, response.getStatusCodeValue());
+    }
+
+    @Test
+    public void testUpdateExistingTelephone() {
+        TelephoneRepository tr = new TelephoneRepository();
+        Telephone telephone = new Telephone(1);
+        tr.save(telephone);
+        telephone.setStatus(Status.BUSY);
+        controller.updateTelephone(telephone);
+
+        assertEquals(tr.findById(1).getStatus(), Status.BUSY);
     }
 }
