@@ -26,7 +26,7 @@ public class ExchangeTests {
 	@Test
 	void test_addPhoneToExchange_success() throws PhoneExistInNetworkException {
 		Exchange exchange = new Exchange();
-		exchange.addPhoneToExchange(new Telephone(1));
+		exchange.addPhoneToExchange(new Telephone("fake user"));
 		assertEquals(1, exchange.getNumberOfPhones());
 	}
 	
@@ -37,7 +37,7 @@ public class ExchangeTests {
 	@Test
 	void test_addPhoneToExchange_phoneExists() throws PhoneExistInNetworkException {
 		Exchange exchange = new Exchange();
-		Telephone telephone = new Telephone(1);
+		Telephone telephone = new Telephone("fake user");
 		exchange.addPhoneToExchange(telephone);
 		
 		assertThrows(PhoneExistInNetworkException.class, () -> {exchange.addPhoneToExchange(telephone);});
@@ -49,7 +49,7 @@ public class ExchangeTests {
 	@Test 
 	void test_enrouteCall_success() throws BusyPhoneException, PhoneNotFoundException, PhoneExistInNetworkException {
 		Exchange exchange = new Exchange();
-		Telephone telephone = new Telephone(1);
+		Telephone telephone = new Telephone("fake user");
 		exchange.addPhoneToExchange(telephone);
 		exchange.enrouteCall(1);
 		assertEquals(Status.RINGING, telephone.getStatus());
@@ -62,7 +62,7 @@ public class ExchangeTests {
 	@Test
 	void test_enrouteCall_when_busy() throws PhoneExistInNetworkException {
 		Exchange exchange = new Exchange();
-		Telephone telephone = new Telephone(1);
+		Telephone telephone = new Telephone("fake user");
 		exchange.addPhoneToExchange(telephone);
 		telephone.setStatus(Status.BUSY);
 

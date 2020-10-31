@@ -77,7 +77,7 @@ class TelephoneController {
 	 * @return the information of the new telephone in the network
 	 */
 	@PostMapping("/telephones/{id}")
-	ResponseEntity<?> updateTelephone(@RequestBody Telephone newTelephone, @PathVariable Long id) {
+	ResponseEntity<?> updateTelephone(@RequestBody Telephone newTelephone, @PathVariable int id) {
 		Telephone updatedTelephone = repository.findById(id).map(telephone -> {
 			telephone.setUsername(newTelephone.getUsername());
 			return repository.save(telephone);
@@ -98,7 +98,7 @@ class TelephoneController {
 	 * @return a responseentity
 	 */
 	@DeleteMapping("/telephones/{id}")
-	ResponseEntity<?> delete(@PathVariable Long id) {
+	ResponseEntity<?> delete(@PathVariable int id) {
 		throw new NotYetImplementedException();
 	}
 }

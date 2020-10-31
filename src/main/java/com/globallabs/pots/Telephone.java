@@ -4,18 +4,20 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
 
 @Entity
 public class Telephone {
     
     private @Id @GeneratedValue int id;
     private String username;
+    private Status status;
 
     /**
      * Contructor of the telephone entity
      * @param username the username attached to the telephone
      */
-    Telephone(String username){
+    public Telephone(String username){
         this.username = username;
     }
 
